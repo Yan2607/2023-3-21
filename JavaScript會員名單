@@ -1,0 +1,75 @@
+package homework;
+import java.io.*;
+import java.util.*;
+
+public class MemberList {
+    public static class Queue {
+        public static final int NUM = 10;
+        public static int[] Queue = new int[NUM];
+        public static int Back;
+        public static int Front;
+        
+        public static void main(String[] args) {
+            Scanner scn = new Scanner(System.in);
+            int x = 0;
+            Back = -1;
+            Front = -1;
+            while (x != 4) {
+                System.out.println("1) 新增會員編號");
+                System.out.println("2) 移除最前面的會員編號");
+                System.out.println("3) 顯示會員編號");
+                System.out.println("4) 結束程式");
+                x = scn.nextInt();
+                switch (x) {
+                    case 1:
+                        System.out.println("請輸入會員編號：");
+                        int val = scn.nextInt();
+                        Add(val);
+                        break;
+                    case 2:
+                        Delete();
+                        break;
+                    case 3:
+                        print();
+                        break;
+                    case 4:
+                        System.out.println("程式結束");
+                        break;
+                    default:
+                        System.out.println("請輸入有效的選項");
+                        break;
+                }
+            }
+            scn.close();
+        }
+
+        public static void Add(int val) {
+            if (Back == NUM - 1) {
+                System.out.println("隊列已滿，無法新增會員編號");
+                return;
+            } else {
+                Queue[++Back] = val;
+                System.out.println("會員編號 " + val + " 已新增至隊列");
+            }
+        }
+
+        public static void Delete() {
+            if (Front == Back) {
+                System.out.println("隊列為空，無法移除會員編號");
+            } else {
+                System.out.println("移除會員編號 " + Queue[++Front]);
+            }
+        }
+
+        public static void print() {
+            if (Front == Back) {
+                System.out.println("隊列為空，無法顯示會員編號");
+                return;
+            }
+            System.out.println("會員編號列表：");
+            for (int i = Front + 1; i <= Back; i++) {
+                System.out.println(Queue[i]);
+            }
+        }
+    }
+}
