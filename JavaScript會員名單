@@ -45,17 +45,17 @@ public class MemberList {
 
         public static void Add(int val) {
             if (Back == NUM - 1) {
-                System.out.println("隊列已滿，無法新增會員編號");
+                System.out.println("名單已滿，無法新增會員");
                 return;
             } else {
                 Queue[++Back] = val;
-                System.out.println("會員編號 " + val + " 已新增至隊列");
+                System.out.println("會員編號 " + val + " 已新增至名單");
             }
         }
 
         public static void Delete() {
             if (Front == Back) {
-                System.out.println("隊列為空，無法移除會員編號");
+                System.out.println("名單為空，無法移除會員編號");
             } else {
                 System.out.println("移除會員編號 " + Queue[++Front]);
             }
@@ -63,7 +63,7 @@ public class MemberList {
 
         public static void print() {
             if (Front == Back) {
-                System.out.println("隊列為空，無法顯示會員編號");
+                System.out.println("名單為空，無法顯示會員編號");
                 return;
             }
             System.out.println("會員編號列表：");
