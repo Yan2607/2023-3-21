@@ -1,0 +1,34 @@
+package homework;
+import java.util.*;
+
+public class Text {
+
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+		System.out.println("請輸入一個數字：");
+		int n = scn.nextInt();
+
+		int x = 0;
+		int i = 1;
+		for (;;) {
+			System.out.println("請猜一個數字：");
+			x = scn.nextInt();
+
+			if (x == n) {
+				System.out.println("猜測正確");
+				System.out.println("猜測次數：" + i);
+				break;
+			} else {
+				System.out.println("猜測錯誤");
+			}
+
+			if (i == 10) {
+				System.out.println("猜測次數已達上限");
+				break;
+			}
+			i++;
+		}
+
+	}
+
+}
