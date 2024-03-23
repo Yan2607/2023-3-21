@@ -1,0 +1,16 @@
+abc = 'abcdefghijklmnopqrstuvwxyz'
+wd = []
+front3 = abc[:3]
+end3 = abc[3:]
+Text = end3+front3
+wd = dict(zip(Text,abc))
+print("列出字典",wd)
+
+msg = 'goodmorning'
+newwd = []
+for i in msg:
+    a = wd[i]
+    newwd.append(a)
+ciphertext = ''.join(newwd)
+print("原本的",msg)
+print('加密後的',newwd)
