@@ -1,0 +1,40 @@
+import requests
+from bs4 import BeautifulSoup
+import smtplib
+from email.mime.text import MIMEText
+import schedule
+import time
+
+def send_poem_email():
+    r = requests.get("http://faculty.ndhu.edu.tw/~e-poem/poemroad/shiu-jrmo/category/productions/page/2/")
+    soup = BeautifulSoup(r.text, "html.parser")
+    sel = soup.select("div.content p")
+    
+   
+    email_content = ""
+    for s in sel:
+        poem = s.text
+        poem = poem.replace("詩路管理員發表 | 詩作 | 單篇網址 |   迴響(0)", "\n")
+        email_content += poem + "\n\n"
+
+    msg = MIMEText(email_content, "plain")
+    msg["Subject"] = "一天一志摩"  
+
+    
+    from_email = "你的gmail"
+    password = "你的gmail密碼"
+
+    to_email = "收到文章的gmail"
+
+    server = smtplib.SMTP("你的gmail", 服務器)
+    server.starttls()
+    server.login(from_email, password)
+
+    server.sendmail(from_email, to_email, msg.as_string())
+    server.quit()
+
+schedule.every().day.at("每天幾點送").do(send_poem_email)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
